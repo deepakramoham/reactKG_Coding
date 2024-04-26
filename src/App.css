@@ -13,3 +13,13 @@
   background-color: lightgray;
   margin: 0px;
 }
+.postCard{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.customTagStyle{
+  margin: 0px 3px;
+}
+.reactions{
+  width:100%;
+}
