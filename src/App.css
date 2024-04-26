@@ -1,15 +1,15 @@
-.outerDiv{
-    display:flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin-bottom: 3px;
-    margin-top:3px;
+.outerDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 3px;
+  margin-top: 3px;
 }
-.childDiv{
-    margin-left: 15px;
+.childDiv {
+  margin-left: 15px;
 }
 
-.customFooter{
-    background-color:lightgray;
-    margin:0px;
+.customFooter {
+  background-color: lightgray;
+  margin: 0px;
 }
