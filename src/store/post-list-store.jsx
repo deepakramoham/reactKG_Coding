@@ -5,6 +5,7 @@ export const PostList = createContext({
   postList: [],
   addPost: () => {},
   deletePost: () => {},
+  addInitialPosts: () => {},
 });
 
 const postListReducer = (currPostList, action) => {
@@ -13,21 +14,17 @@ const postListReducer = (currPostList, action) => {
     newPostList = currPostList.filter(
       (post) => post.id !== action.payload.postId
     );
-  }
-  else if(action.type) {
-    newPostList =[action.payload,... currPostList]
+  } else if (action.type === "ADD_POST") {
+    newPostList = [action.payload, ...currPostList];
     console.log(newPostList);
+  } else if (action.type === "ADD_INITIAL_POSTS") {
+    newPostList = action.payload.posts;
   }
   return newPostList;
 };
 const PostListProvider = ({ children }) => {
-  const [postList, dispatchPostList] = useReducer(
-    postListReducer,
-    DEFAULT_POST_LIST
-  );
-
+  const [postList, dispatchPostList] = useReducer(postListReducer, []);
   const addPost = (userId, postTitle, postContent, reactions, tags) => {
-
     dispatchPostList({
       type: "ADD_POST",
       payload: {
@@ -37,6 +34,14 @@ const PostListProvider = ({ children }) => {
         body: postContent,
         reactions: reactions,
         tags: tags,
+      },
+    });
+  };
+  const addInitialPosts = (posts) => {
+    dispatchPostList({
+      type: "ADD_INITIAL_POSTS",
+      payload: {
+        posts,
       },
     });
   };
@@ -51,38 +56,16 @@ const PostListProvider = ({ children }) => {
   };
   return (
     <PostList.Provider
-      value={{ postList: postList, addPost: addPost, deletePost: deletePost }}
+      value={{
+        postList: postList,
+        addPost: addPost,
+        deletePost: deletePost,
+        addInitialPosts: addInitialPosts,
+      }}
     >
       {children}
     </PostList.Provider>
   );
 };
-
-const DEFAULT_POST_LIST = [
-  {
-    id: "1",
-    title: "Going to Mumbai",
-    body: "Hi Friends, I am going to Nagpur",
-    reactions: 3,
-    userId: "user-9",
-    tags: ["vacation", "mumbai", "enjoying"],
-  },
-  {
-    id: "2",
-    title: "Going to Kerala",
-    body: "Hi Friends, I am going to Kerala",
-    reactions: 5,
-    userId: "user-9",
-    tags: ["vacation", "mumbai", "enjoying"],
-  },
-  {
-    id: "3",
-    title: "Going to Nashik",
-    body: "Hi Friends, I am going to Nashik",
-    reactions: 5,
-    userId: "user-9",
-    tags: ["vacation", "mumbai", "enjoying"],
-  },
-];
 
 export default PostListProvider;

@@ -1,17 +1,15 @@
 import { createContext, useContext, useRef } from "react";
-import {  } from "react";
+import {} from "react";
 import { PostList } from "../store/post-list-store";
 
 const CreatePost = () => {
-
- 
-  const {addPost} = useContext(PostList);
+  const { addPost } = useContext(PostList);
   const userIdRef = useRef();
   const postTitleRef = useRef();
   const postContentRef = useRef();
   const reactionsRef = useRef();
   const tagsRef = useRef();
-  const handleSubmit = (event)=> {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const userId = userIdRef.current.value;
     const postTitle = postTitleRef.current.value;
@@ -20,14 +18,12 @@ const CreatePost = () => {
     const tags = tagsRef.current.value.split(" ");
 
     addPost(userId, postTitle, postContent, reactions, tags);
-    userIdRef.current.value="";
-    postTitleRef.current.value="";
-    postContentRef.current.value="";
-    reactionsRef.current.value="";
-    tagsRef.current.value="";
-
-  }
-  
+    userIdRef.current.value = "";
+    postTitleRef.current.value = "";
+    postContentRef.current.value = "";
+    reactionsRef.current.value = "";
+    tagsRef.current.value = "";
+  };
 
   return (
     <>
@@ -44,7 +40,6 @@ const CreatePost = () => {
             placeholder="Your User Id"
             ref={userIdRef}
           />
-          
         </div>
         <div className="mb-3 postClass">
           <label htmlFor="postTitle" className="form-label">
@@ -58,7 +53,6 @@ const CreatePost = () => {
             placeholder="How are you feeling today"
             ref={postTitleRef}
           />
-          
         </div>
         <div className="mb-3 postClass">
           <label htmlFor="postContent" className="form-label">
@@ -71,7 +65,6 @@ const CreatePost = () => {
             aria-describedby="postTitle"
             ref={postContentRef}
           />
-          
         </div>
         <div className="mb-3 postClass">
           <label htmlFor="noOfReactions" className="form-label">
@@ -85,7 +78,6 @@ const CreatePost = () => {
             placeholder="How many people reacted to this"
             ref={reactionsRef}
           />
-          
         </div>
         <div className="mb-3 postClass">
           <label htmlFor="tags" className="form-label">
@@ -99,9 +91,8 @@ const CreatePost = () => {
             placeholder="How many people reacted to this"
             ref={tagsRef}
           />
-          
         </div>
-        
+
         <button type="submit" className="btn btn-primary">
           Post
         </button>
