@@ -3,11 +3,10 @@ import { useContext, useEffect, useState } from "react";
 import { PostList as PostListData } from "../store/post-list-store";
 import Loading from "./Loading";
 const PostList = () => {
-  const [fetching, setFetching] = useState(false);
+  const [fetching, setFetching] = useState(true);
   const { postList, addInitialPosts } = useContext(PostListData);
   console.log("before useEffect");
   useEffect(() => {
-    setFetching(true);
     console.log("inside useEffect, before fetchData");
     fetch("https://dummyjson.com/posts")
       .then((res) => res.json())
