@@ -1,43 +1,109 @@
+import { createContext, useContext, useRef } from "react";
+import {  } from "react";
+import { PostList } from "../store/post-list-store";
+
 const CreatePost = () => {
+
+ 
+  const {addPost} = useContext(PostList);
+  const userIdRef = useRef();
+  const postTitleRef = useRef();
+  const postContentRef = useRef();
+  const reactionsRef = useRef();
+  const tagsRef = useRef();
+  const handleSubmit = (event)=> {
+    event.preventDefault();
+    const userId = userIdRef.current.value;
+    const postTitle = postTitleRef.current.value;
+    const postContent = postContentRef.current.value;
+    const reactions = reactionsRef.current.value;
+    const tags = tagsRef.current.value.split(" ");
+
+    addPost(userId, postTitle, postContent, reactions, tags);
+    userIdRef.current.value="";
+    postTitleRef.current.value="";
+    postContentRef.current.value="";
+    reactionsRef.current.value="";
+    tagsRef.current.value="";
+
+  }
+  
+
   return (
     <>
-      <form>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
-            Email address
+      <form className="formClass" onSubmit={handleSubmit}>
+        <div className="mb-3 ">
+          <label htmlFor="userId" className="form-label">
+            Enter your User Id here
           </label>
           <input
-            type="email"
+            type="text"
             className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
+            id="userId"
+            aria-describedby="postTitle"
+            placeholder="Your User Id"
+            ref={userIdRef}
           />
-          <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
-          </div>
+          
         </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword1" className="form-label">
-            Password
+        <div className="mb-3 postClass">
+          <label htmlFor="postTitle" className="form-label">
+            Post Title
           </label>
           <input
-            type="password"
+            type="text"
             className="form-control"
-            id="exampleInputPassword1"
+            id="postTitle"
+            aria-describedby="postTitle"
+            placeholder="How are you feeling today"
+            ref={postTitleRef}
           />
+          
         </div>
-        <div className="mb-3 form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
-          <label className="form-check-label" htmlFor="exampleCheck1">
-            Check me out
+        <div className="mb-3 postClass">
+          <label htmlFor="postContent" className="form-label">
+            Post Content
           </label>
+          <textarea
+            type="text"
+            className="form-control"
+            id="postContent"
+            aria-describedby="postTitle"
+            ref={postContentRef}
+          />
+          
         </div>
+        <div className="mb-3 postClass">
+          <label htmlFor="noOfReactions" className="form-label">
+            Number of Reactions
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="noOfReactions"
+            aria-describedby="postTitle"
+            placeholder="How many people reacted to this"
+            ref={reactionsRef}
+          />
+          
+        </div>
+        <div className="mb-3 postClass">
+          <label htmlFor="tags" className="form-label">
+            Tags
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="tags"
+            aria-describedby="postTitle"
+            placeholder="How many people reacted to this"
+            ref={tagsRef}
+          />
+          
+        </div>
+        
         <button type="submit" className="btn btn-primary">
-          Submit
+          Post
         </button>
       </form>
     </>
