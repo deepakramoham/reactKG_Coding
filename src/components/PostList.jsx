@@ -8,20 +8,19 @@ const PostList = () => {
   useEffect(() => {
     setFetching(true);
     const controller = new AbortController();
-    
+
     const signal = controller.signal;
-    
+
     fetch("https://dummyjson.com/posts", { signal })
       .then((res) => res.json())
       .then((obj) => {
         addInitialPosts(obj.posts);
         setFetching(false);
-      })
-   
-    return (() => {
-    
-      controller.abort();
-    });
+      });
+
+    return () => {
+      /* controller.abort(); */ //causing Uncaught Promise Error
+    };
   }, []);
   return (
     <>

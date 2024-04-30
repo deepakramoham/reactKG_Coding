@@ -8,6 +8,7 @@ import PostList from "./components/PostList";
 import { useState } from "react";
 import PostListProvider from "./store/post-list-store";
 import { useContext } from "react";
+import MyComponent from "./components/MyComponent";
 
 function App() {
   const [selectedTab, setSelectedTab] = useState("Home");
@@ -24,6 +25,7 @@ function App() {
             />
           </div>
           <div className="childDiv">
+            <MyComponent/>
             {selectedTab === "CreatePost" ? <CreatePost /> : <PostList />}
           </div>
         </div>
