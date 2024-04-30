@@ -1,7 +1,7 @@
 const Loading = () => {
   return (
     <>
-      <div className="text-center">
+      <div style={{marginLeft:"350px",marginTop:"200px"}}>
         <div className="spinner-border" role="status">
           <span className="visually-hidden">Loading...</span>
         </div>

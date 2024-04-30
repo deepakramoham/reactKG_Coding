@@ -27,3 +27,7 @@
 .formClass{
   width:500px;
 }
+.loadingClass{
+  display: flex;
+  justify-content: center;
+}

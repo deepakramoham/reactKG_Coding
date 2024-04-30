@@ -10,7 +10,7 @@ import PostListProvider from "./store/post-list-store";
 import { useContext } from "react";
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState("Home");
+  const [selectedTab, setSelectedTab] = useState("CreatePost");
 
   return (
     <>
