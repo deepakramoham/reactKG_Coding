@@ -1,4 +1,4 @@
-import { createContext, useCallback } from "react";
+import { createContext, useCallback, useMemo } from "react";
 import { useReducer, useEffect } from "react";
 
 export const PostList = createContext({
@@ -57,6 +57,11 @@ const PostListProvider = ({ children }) => {
     },
     [dispatchPostList]
   );
+  const arr=[5,3,6,7,2];
+  const sortedArray = useMemo(()=>arr.sort(),[arr]);
+  //this won't be executed again and again with re-renders until the "arr" array doesn't change.
+  //useMemo and useCallback helps in optimization preventing unnecessary recalculations.
+
   return (
     <PostList.Provider
       value={{

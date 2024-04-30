@@ -25,7 +25,6 @@ function App() {
             />
           </div>
           <div className="childDiv">
-            <MyComponent/>
             {selectedTab === "CreatePost" ? <CreatePost /> : <PostList />}
           </div>
         </div>
