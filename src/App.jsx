@@ -7,6 +7,7 @@ import CreatePost from "./components/CreatePost";
 import PostList from "./components/PostList";
 import { useState } from "react";
 import PostListProvider from "./store/post-list-store";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [selectedTab, setSelectedTab] = useState("Home");
@@ -23,7 +24,7 @@ function App() {
             />
           </div>
           <div className="childDiv">
-            {selectedTab === "CreatePost" ? <CreatePost /> : <PostList />}
+            <Outlet />
           </div>
         </div>
 
