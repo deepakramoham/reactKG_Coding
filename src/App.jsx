@@ -33,5 +33,12 @@ function App() {
     </>
   );
 }
+export const  postLoader = () => {
+ return  fetch("https://dummyjson.com/posts")
+    .then((res) => res.json())
+    .then((obj) => {
+      return obj.posts;
+    });
+};
 
 export default App;
